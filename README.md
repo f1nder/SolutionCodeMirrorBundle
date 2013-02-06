@@ -1,7 +1,7 @@
 SolutionCodeMirrorBundle
 ========================
 
-Integration  [CodeMirror](http://codemirror.net/)  in you symfony2 project.
+Integration  [CodeMirror](http://codemirror.net/) editor in you symfony2 project.
 
 ###Install
 
