@@ -1,0 +1,6 @@
+services:
+    code_mirror.form.type:
+        class: %code_mirror.form_type%
+        arguments: [%code_mirror.parameters%]
+        tags:
+            - { name: form.type, alias: code_mirror }

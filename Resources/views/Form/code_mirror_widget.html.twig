@@ -1,0 +1,19 @@
+{% form_theme form _self %}
+
+{% block code_mirror_widget %}
+    {% spaceless %}
+
+        {{ block('form_widget') }}
+
+        {% javascripts
+        '@SolutionCodeMirrorBundle/Resources/public/js/codemirror.js'
+        '@SolutionCodeMirrorBundle/Resources/public/js/mode/xml.js'
+        '@SolutionCodeMirrorBundle/Resources/public/js/mode/jinja2.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        <script>
+            var code_mirror_{{ id }} =  CodeMirror.fromTextArea(document.getElementById("{{ id }}"), {{ parameters|json_encode|raw }} );
+        </script>
+    {% endspaceless %}
+{% endblock %}
