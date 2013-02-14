@@ -6,21 +6,22 @@
     "license": "MIT",
     "authors": [
         {
-            "name":     "Aleksandr Moroz",
+            "name": "Aleksandr Moroz",
             "homepage": "http://comingsoon.com",
-            "email":    "netstroix@gmail.com"
+            "email": "netstroix@gmail.com"
         }
     ],
     "require": {
         "php": ">=5.3.2",
-        "symfony/symfony": "2.*",
+        "symfony/symfony": "~2.2",
         "twig/twig": "*",
-        "zendframework/zend-json":"2.0.*"
+        "zendframework/zend-json": "2.0.*"
     },
+    "minimum-stability": "dev",
     "autoload": {
         "psr-0": {
             "Solution\\CodeMirrorBundle": ""
         }
     },
-    "target-dir" : "Solution/CodeMirrorBundle"
+    "target-dir": "Solution/CodeMirrorBundle"
 }
