@@ -24,6 +24,7 @@ class SolutionCodeMirrorExtension extends Extension
 
         $container->setParameter('code_mirror.form_type', $config['form_type']);
         $container->setParameter('code_mirror.parameters', $config['parameters']);
+        $container->setParameter('code_mirror.twig.extension', $config['twig_extension']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

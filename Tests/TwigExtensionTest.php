@@ -68,4 +68,6 @@ class TwigExtensionTest extends \PHPUnit_Framework_TestCase
             ),
         );
     }
+
+
 }
