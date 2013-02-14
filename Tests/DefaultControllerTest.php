@@ -5,13 +5,25 @@ namespace Solution\CodeMirrorBundle\Tests;
 use Solution\CodeMirrorBundle\Twig\CodeMirrorExtension;
 use Zend\Json\Json;
 
-class TwigExtensionTestControllerTest extends \PHPUnit_Framework_TestCase
+class TwigExtensionTest extends \PHPUnit_Framework_TestCase
 {
     protected $extension;
 
     protected function setUp()
     {
         $this->extension = new CodeMirrorExtension();
+    }
+
+    /**
+     * Must be first call by default
+     */
+    public function testIsFirstCallByDefault()
+    {
+        $this->assertEquals(true, $this->extension->isFirstCall());
+
+        $this->extension->parametersRender(array());
+
+        $this->assertEquals(false, $this->extension->isFirstCall());
     }
 
     /**

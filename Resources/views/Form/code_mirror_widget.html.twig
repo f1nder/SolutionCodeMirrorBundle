@@ -2,18 +2,19 @@
 
 {% block code_mirror_widget %}
     {% spaceless %}
-
         {{ block('form_widget') }}
 
-        {% javascripts
-        '@SolutionCodeMirrorBundle/Resources/public/js/codemirror.js'
-        '@SolutionCodeMirrorBundle/Resources/public/js/mode/xml.js'
-        '@SolutionCodeMirrorBundle/Resources/public/js/mode/jinja2.js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        {% if code_mirror_is_first_call() %}
+            {% javascripts
+            '@SolutionCodeMirrorBundle/Resources/public/js/codemirror.js'
+            '@SolutionCodeMirrorBundle/Resources/public/js/mode/xml.js'
+            '@SolutionCodeMirrorBundle/Resources/public/js/mode/jinja2.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endif %}
 
         <script>
-            var code_mirror_{{ id }} =  CodeMirror.fromTextArea(document.getElementById("{{ id }}"), {{ parameters|json_encode|raw }} );
+            var code_mirror_{{ id }} = CodeMirror.fromTextArea(document.getElementById("{{ id }}"), {{ code_mirror_parameters_render(parameters)|raw }});
         </script>
     {% endspaceless %}
 {% endblock %}
