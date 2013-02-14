@@ -8,6 +8,7 @@ env:
 
 before_script:
   - wget http://getcomposer.org/composer.phar
+  - composer require symfony/framework-bundle:v2.2.0-RC2
   - php composer.phar install --dev
 
 script: phpunit
