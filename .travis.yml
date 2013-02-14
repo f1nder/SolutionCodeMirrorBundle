@@ -7,8 +7,7 @@ env:
   - SYMFONY_VERSION="2.2.*"
 
 before_script:
-  - wget http://getcomposer.org/composer.phar
-  - composer require symfony/framework-bundle:${SYMFONY_VERSION}
-  - php composer.phar install --dev
+  - curl -s http://getcomposer.org/installer | php --
+  - php composer.phar require symfony/framework-bundle:${SYMFONY_VERSION}
 
 script: phpunit
