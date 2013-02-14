@@ -13,11 +13,11 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "symfony/framework-bundle": "~2.2",
+        "symfony/symfony": "~2.2",
         "twig/twig": "*",
         "zendframework/zend-json": "2.0.*"
     },
-    "minimum-stability": "RC",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-0": {
             "Solution\\CodeMirrorBundle": ""
