@@ -6,6 +6,7 @@ use Solution\CodeMirrorBundle\Asset\Asset;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Solution\CodeMirrorBundle\Tests\AppKernel;
 
 class AssertTest extends WebTestCase
 {
@@ -16,9 +17,7 @@ class AssertTest extends WebTestCase
 
     protected function setUp()
     {
-        $_SERVER['KERNEL_DIR'] = __DIR__.'/../../../../../../app/';
-
-        static::$kernel = static::createKernel();
+        self::$kernel = new AppKernel('test', true);
         static::$kernel->boot();
         $this->container = static::$kernel->getContainer();
 
