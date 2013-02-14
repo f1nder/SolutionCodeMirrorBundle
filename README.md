@@ -17,7 +17,7 @@ Enable bundle , add to `AppKernel.php`:
  new Solution\CodeMirrorBundle\SolutionCodeMirrorBundle()
 ```
 ###Configuration
-Add default parameters to `config.yml` and
+Add default parameters to `config.yml`:
 ``` yaml
 twig:
     form:
