@@ -1,4 +1,4 @@
-SolutionCodeMirrorBundle [![Build Status](https://travis-ci.org/f1nder/SolutionCodeMirrorBundle.png)](https://travis-ci.org/f1nder/SolutionCodeMirrorBundle)
+SolutionCodeMirrorBundle [![Build Status](https://api.travis-ci.org/f1nder/SolutionCodeMirrorBundle.png?branch=master)](https://travis-ci.org/f1nder/SolutionCodeMirrorBundle)
 ========================
 
 Bundle not yet ready.
