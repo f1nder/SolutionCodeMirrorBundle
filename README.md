@@ -29,6 +29,8 @@ solution_code_mirror:
       mode: text/html
       lineNumbers: true
       lineWrapping: true
+    mode_dirs:
+      - @SolutionCodeMirrorBundle/Resources/public/js/mode
 ```
 
 
