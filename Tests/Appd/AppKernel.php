@@ -14,8 +14,7 @@ class AppKernel extends Kernel
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
             new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new \Solution\CodeMirrorBundle\SolutionCodeMirrorBundle(),
-    )
-    ;
+        );
 
         return $bundles;
     }
