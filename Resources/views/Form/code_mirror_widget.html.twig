@@ -3,14 +3,18 @@
 {% block code_mirror_widget %}
     {% spaceless %}
         {{ block('form_widget') }}
-
         {% if code_mirror_is_first_call() %}
-            {% javascripts
-            '@SolutionCodeMirrorBundle/Resources/public/js/codemirror.js'
-            '@SolutionCodeMirrorBundle/Resources/public/js/mode/xml.js'
-            '@SolutionCodeMirrorBundle/Resources/public/js/mode/jinja2.js' %}
+            {% javascripts '@SolutionCodeMirrorBundle/Resources/public/js/codemirror.js'  %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
+        {% endif %}
+        {% for mode_path in code_mirror_get_js_mode(parameters) %}
+            <script src="{{ asset(mode_path) }}" type="text/javascript"></script>
+        {% endfor %}
+
+        {% if code_mirror_get_css_theme(parameters) %}
+            {% set theme = code_mirror_get_css_theme(parameters) %}
+
         {% endif %}
 
         <script>

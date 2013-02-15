@@ -9,6 +9,8 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
+        system('rm -rf ' . escapeshellarg(__DIR__.'/cache'));
+
         $bundles = array(
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),

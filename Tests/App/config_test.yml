@@ -22,9 +22,9 @@ twig:
 assetic:
     debug: true
     use_controller: false
-    bundles:        [SolutionCodeMirrorBundle ]
+    bundles:        [SolutionCodeMirrorBundle]
     #java: /usr/bin/java
-    write_to: %kernel.root_dir%/../web
+    write_to: %kernel.root_dir%/web
     filters:
         cssrewrite: ~
 
@@ -34,4 +34,6 @@ solution_code_mirror:
       lineNumbers: true
       lineWrapping: true
     mode_dirs:
+     - @SolutionCodeMirrorBundle/Tests/App/dummy_js
+    themes_dirs:
      - @SolutionCodeMirrorBundle/Tests/App/dummy_js

@@ -26,8 +26,9 @@ class SolutionCodeMirrorExtension extends Extension
         $container->setParameter('code_mirror.parameters', $config['parameters']);
         $container->setParameter('code_mirror.twig.extension', $config['twig_extension']);
         $container->setParameter('code_mirror.mode_dirs', $config['mode_dirs']);
+        $container->setParameter('code_mirror.themes_dirs', $config['themes_dirs']);
+
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }
-
 }

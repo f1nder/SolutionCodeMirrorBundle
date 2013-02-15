@@ -23,8 +23,20 @@ class AssertTest extends WebTestCase
         self::$kernel = new AppKernel('test', true);
         static::$kernel->boot();
         $this->container = static::$kernel->getContainer();
-
         $this->asset = $this->container->get('code_mirror.asset_manager');
+    }
+
+    /**
+     * Test themes
+     */
+    public function testGetThemes()
+    {
+        $this->assertEquals(
+            array(
+                'twilight' => __DIR__ . '/App/dummy_js/twilight.css',
+            ),
+            $this->asset->getThemes()
+        );
     }
 
     /**

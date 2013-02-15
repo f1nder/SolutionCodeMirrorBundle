@@ -14,28 +14,36 @@ class AssetManager
     /** @var  FileLocator */
     protected $fileLocator;
 
-    /** @var  Finder */
-    protected $finder;
-
     protected $modes = array();
 
     protected $themes = array();
 
     protected $modeDirs = array();
 
+    protected $themesDirs = array();
+
     protected $cacheDriver;
 
-    function __construct($fileLocator, $modeDirs)
+    protected $env;
+
+    function __construct($fileLocator, $modeDirs, $themesDirs, $cacheDir, $env)
     {
         $this->fileLocator = $fileLocator;
         $this->modeDirs = $modeDirs;
-        $this->finder = new Finder();
-        $this->cacheDriver = new PhpFileCache(__DIR__);
-
-        if ($cacheModes = $this->cacheDriver->fetch(static::CACHE_MODES_NAME)) {
+        $this->themesDirs = $themesDirs;
+        $this->cacheDriver = new PhpFileCache($cacheDir);
+        $this->env = $env;
+        #check env and fetch cache
+        if ($this->env == 'prod' && $cacheModes = $this->cacheDriver->fetch(static::CACHE_MODES_NAME)) {
             $this->modes = $cacheModes;
         } else {
             $this->parseModes();
+        }
+
+        if ($this->env == 'prod' && $cacheThemes = $this->cacheDriver->fetch(static::CACHE_THEMES_NAME)) {
+            $this->themes = $cacheThemes;
+        } else {
+            $this->parseThemes();
         }
     }
 
@@ -48,7 +56,7 @@ class AssetManager
 
     public function getMode($key)
     {
-        return $this->modes[$key];
+        return isset( $this->modes[$key]) ? $this->modes[$key] : false;
     }
 
     public function addTheme($key, $resource)
@@ -60,7 +68,7 @@ class AssetManager
 
     public function getTheme($key)
     {
-        return $this->themes[$key];
+        return isset( $this->themes[$key]) ? $this->themes[$key] : false;
     }
 
     public function getModes()
@@ -68,19 +76,34 @@ class AssetManager
         return $this->modes;
     }
 
+    public function getThemes()
+    {
+        return $this->themes;
+    }
+
+    /**
+     * Parse editor mode from dir
+     */
     protected function parseModes()
     {
         foreach ($this->modeDirs as $dir) {
             $absDir = $this->fileLocator->locate($dir);
-            $this->finder->files()->in($absDir)->name('*.js');
-            foreach ($this->finder as $file) {
+
+            $finder = Finder::create()->files()->in($absDir)->name('*.js');
+
+            foreach ($finder as $file) {
                 $this->addModesFromFile($file);
             }
         }
-        #save to cache
-       $this->cacheDriver->save(static::CACHE_MODES_NAME, $this->getModes());
+        #save to cache if env prod
+        if ($this->env == 'prod') {
+            $this->cacheDriver->save(static::CACHE_MODES_NAME, $this->getModes());
+        }
     }
 
+    /**
+     * Parse editor modes from dir
+     */
     protected function addModesFromFile($file)
     {
         $jsContent = $file->getContents();
@@ -89,6 +112,28 @@ class AssetManager
             foreach ($modes[2] as $mode) {
                 $this->addMode($mode, $file->getPathname());
             }
+        }
+
+                #save to cache if env prod
+        if ($this->env == 'prod') {
+            $this->cacheDriver->save(static::CACHE_MODES_NAME, $this->getThemes());
+        }
+    }
+    /**
+     * Parse editor themes from dir
+     */
+    protected function parseThemes()
+    {
+        foreach ($this->themesDirs as $dir) {
+            $absDir = $this->fileLocator->locate($dir);
+            $finder = Finder::create()->files()->in($absDir)->name('*.css');
+            foreach ($finder as $file) {
+                $this->addTheme($file->getBasename('.css'), $file->getPathname());
+            }
+        }
+        #save to cache if env prod
+        if ($this->env == 'prod') {
+            $this->cacheDriver->save(static::CACHE_THEMES_NAME, $this->getThemes());
         }
     }
 }

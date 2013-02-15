@@ -4,14 +4,21 @@ namespace Solution\CodeMirrorBundle\Tests;
 
 use Solution\CodeMirrorBundle\Twig\CodeMirrorExtension;
 use Zend\Json\Json;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Client;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Solution\CodeMirrorBundle\Tests\App\AppKernel;
 
-class TwigExtensionTest extends \PHPUnit_Framework_TestCase
+class TwigExtensionTest extends WebTestCase
 {
     protected $extension;
 
     protected function setUp()
     {
-        $this->extension = new CodeMirrorExtension();
+        self::$kernel = new AppKernel('test', true);
+        static::$kernel->boot();
+        $this->container = static::$kernel->getContainer();
+        $this->extension = $this->container->get('code_mirror.twig.extension');
     }
 
     /**
