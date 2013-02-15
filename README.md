@@ -1,4 +1,4 @@
-SolutionCodeMirrorBundle
+SolutionCodeMirrorBundle [![Build Status](https://api.travis-ci.org/f1nder/SolutionCodeMirrorBundle.png?branch=master)](https://travis-ci.org/f1nder/SolutionCodeMirrorBundle)
 ========================
 
 Bundle not yet ready.
@@ -29,6 +29,8 @@ solution_code_mirror:
       mode: text/html
       lineNumbers: true
       lineWrapping: true
+    mode_dirs:
+      - @SolutionCodeMirrorBundle/Resources/public/js/mode
 ```
 
 
