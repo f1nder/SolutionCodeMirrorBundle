@@ -21,19 +21,18 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('solution_code_mirror');
 
         $rootNode
-            ->children()
+            ->children() #->addDefaultChildrenIfNoneSet()
               ->scalarNode('form_type')->defaultValue('Solution\CodeMirrorBundle\Form\Type\CodeMirrorType')->end()
               ->scalarNode('twig_extension')->defaultValue('Solution\CodeMirrorBundle\Twig\CodeMirrorExtension')->end()
-                 ->arrayNode('parameters')
-                   ->prototype('scalar')->end()
-                 ->end()
-
-                 ->arrayNode('mode_dirs')
-                     ->prototype('array')->end()
-                 ->end()
-
+              ->arrayNode('parameters')
+                ->prototype('scalar')->end()
+              ->end()
+              ->arrayNode('mode_dirs')
+            ->isRequired()
+                ->requiresAtLeastOneElement()
+                 ->prototype('scalar')->end()
+              ->end()
             ->end();
-
         return $treeBuilder;
     }
 }

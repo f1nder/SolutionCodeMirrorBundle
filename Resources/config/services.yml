@@ -1,7 +1,7 @@
 services:
     code_mirror.asset_manager:
         class: Solution\CodeMirrorBundle\Asset\AssetManager
-        arguments: [@file_locator]
+        arguments: [@file_locator, %code_mirror.mode_dirs%]
 
     code_mirror.form.type:
         class: %code_mirror.form_type%
