@@ -54,7 +54,7 @@ class CodeMirrorExtension extends \Twig_Extension
         $am->set('theme', new FileAsset($parameters['theme']));
         $am->get('theme');
 
-        var_dump($am, $am->get('theme'), $am->getNames()); die;
+        #var_dump($am, $am->get('theme'), $am->getNames()); die;
 
         if(isset($parameters['theme']) AND $theme = $this->assetManager->getTheme($parameters['theme'])) {
             return $theme;
