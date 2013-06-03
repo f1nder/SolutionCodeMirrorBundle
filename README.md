@@ -31,6 +31,8 @@ solution_code_mirror:
       lineWrapping: true
     mode_dirs:
       - @SolutionCodeMirrorBundle/Resources/public/js/mode
+    themes_dirs:
+      - @SolutionCodeMirrorBundle/Resources/public/css/theme
 ```
 
 
